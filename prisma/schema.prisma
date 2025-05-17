@@ -19,7 +19,8 @@ model Product {
   price       Float
   productType String
   productCategory String
-  description String
+  descriptionShort String?
+  descriptionLong String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

@@ -8,7 +8,17 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { Prisma, Product } from '@prisma/client';
+import { Product } from '@prisma/client';
+import { truncateDescription } from './product.helper';
+
+type InputData = {
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  productCategory: string;
+  productType: string;
+};
 
 @Controller('products')
 export class ProductController {
@@ -26,10 +36,16 @@ export class ProductController {
   }
 
   @Post()
-  async createProduct(
-    @Body() data: Prisma.ProductCreateInput,
-  ): Promise<Product> {
-    return this.productService.createProduct(data);
+  async createProduct(@Body() data: InputData): Promise<Product> {
+    const shortDescription = truncateDescription(data.description);
+    return this.productService.createProduct({
+      name: data.name,
+      descriptionLong: data.description,
+      descriptionShort: shortDescription,
+      price: data.price,
+      productCategory: data.productCategory,
+      productType: data.productType,
+    });
   }
 
   @Delete(':id')
