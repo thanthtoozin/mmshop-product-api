@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: test123
 
   build:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: test123
 
       - name: Build the project
         run: npm run build
