@@ -1,7 +1,7 @@
 name: CI Workflow TT1
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
