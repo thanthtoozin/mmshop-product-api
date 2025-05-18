@@ -24,7 +24,7 @@ jobs:
       - name: Cache node_modules
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: node_modules1
           key: test123
 
   build:
@@ -42,7 +42,7 @@ jobs:
       - name: Restore node_modules cache
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: node_modules1
           key: test123
 
       - name: Build the project
