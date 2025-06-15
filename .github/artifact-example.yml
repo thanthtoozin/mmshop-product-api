@@ -1,0 +1,20 @@
+name: Save Simple Artifact
+
+on: push
+
+jobs:
+  create-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create a file
+        run: echo "Hi, Thant!" > hello.txt
+
+      - name: Upload the file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: greeting-file
+          path: hello.txt
+          retention-days: 3
